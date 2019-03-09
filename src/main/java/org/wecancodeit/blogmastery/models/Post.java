@@ -35,9 +35,9 @@ public class Post {
 	private Genre genre;
 	
 	@ManyToMany
-//	@JoinTable(name = "post_tag",
-//	joinColumns = { @JoinColumn(name = "post") },
-//	inverseJoinColumns = { @JoinColumn(name = "tag") })
+	@JoinTable(name = "post_tag",
+	joinColumns = { @JoinColumn(name = "post") },
+	inverseJoinColumns = { @JoinColumn(name = "tag") })
 	private Collection<Tag> tags;
 
 	public Long getId() {
