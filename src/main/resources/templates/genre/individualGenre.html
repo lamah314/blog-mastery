@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Blog</title>
+    <link rel="stylesheet" href="../css/home.css">
+</head>
+
+<body>
+    <figure>
+        <img class="hero-image" src="../media/blog.jpg" alt="Blog">
+    </figure>
+    <nav class="main-nav">
+        <ul class="nav-links">
+            <li><a class="links" href="/">Home</a></li>
+            <li><a class="links" href="/post/">Posts</a></li>
+            <li><a class="links" href="/author/">Authors</a></li>
+            <li><a class="links" href="/genre/">Genres</a></li>
+            <li><a class="links" href="/tag/">Tags</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="section genre-section">
+            <h2 class="genre-name" th:text="|${genre.name}|">Author Name</h2>
+            <p class="genre__post-section">Posts:</p>
+            <ul class="genre-postlist" th:each="post : ${genre.posts}">
+                <li class="genre-post">
+                    <a class="genre-post-anchor" th:href="@{|/post/${post.id}|}" th:text="${post.title}">Posts</a>
+                </li>
+            </ul>
+        </section>
+    </main>
+</body>
+
+</html>

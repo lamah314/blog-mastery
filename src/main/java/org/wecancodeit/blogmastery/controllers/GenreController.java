@@ -5,6 +5,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.wecancodeit.blogmastery.repositories.AuthorRepository;
 import org.wecancodeit.blogmastery.repositories.GenreRepository;
@@ -25,15 +26,21 @@ public class GenreController {
 	TagRepository tagRepo;
 	
 	@GetMapping("/") 
-	public String getGenre(Model model, Long postId, Long authorId, Long genreId, Long tagId) {
+	public String getGenreHome(Model model) {
 		model.addAttribute("authors", authorRepo.findAll());
 		model.addAttribute("posts", postRepo.findAll());
 		model.addAttribute("genres", genreRepo.findAll());
 		model.addAttribute("tags", tagRepo.findAll());
-		model.addAttribute("post", postRepo.findById(postId).get());
-		model.addAttribute("author", authorRepo.findById(authorId).get());
+		return "genre/home";
+	}
+	
+	@GetMapping("/{genreId}") 
+	public String getGenre(Model model, @PathVariable Long genreId) {
+		model.addAttribute("authors", authorRepo.findAll());
+		model.addAttribute("posts", postRepo.findAll());
+		model.addAttribute("genres", genreRepo.findAll());
+		model.addAttribute("tags", tagRepo.findAll());
 		model.addAttribute("genre", genreRepo.findById(genreId).get());
-		model.addAttribute("tag", tagRepo.findById(tagId).get());
-		return "/genre/home";
+		return "genre/individualGenre";
 	}
 }

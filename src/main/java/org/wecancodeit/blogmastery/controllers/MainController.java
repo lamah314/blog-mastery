@@ -24,16 +24,12 @@ public class MainController {
 	TagRepository tagRepo;
 	
 	@GetMapping("/") 
-	public String getHome(Model model, Long postId, Long authorId, Long genreId, Long tagId) {
+	public String getHome(Model model) {
 		model.addAttribute("authors", authorRepo.findAll());
 		model.addAttribute("posts", postRepo.findAll());
 		model.addAttribute("genres", genreRepo.findAll());
 		model.addAttribute("tags", tagRepo.findAll());
-		model.addAttribute("post", postRepo.findById(postId).get());
-		model.addAttribute("author", authorRepo.findById(authorId).get());
-		model.addAttribute("genre", genreRepo.findById(genreId).get());
-		model.addAttribute("tag", tagRepo.findById(tagId).get());
 		return "home";
 	}
-	
+		
 }

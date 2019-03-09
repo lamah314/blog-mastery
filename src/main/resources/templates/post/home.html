@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Blog</title>
+    <link rel="stylesheet" href="../css/home.css">
+</head>
+
+<body>
+    <figure>
+        <img class="hero-image" src="../media/blog.jpg" alt="Blog">
+    </figure>
+    <nav class="main-nav">
+        <ul class="nav-links">
+            <li><a class="links" href="/">Home</a></li>
+            <li><a class="links" href="/post/">Posts</a></li>
+            <li><a class="links" href="/author/">Authors</a></li>
+            <li><a class="links" href="/genre/">Genres</a></li>
+            <li><a class="links" href="/tag/">Tags</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="section post-section">
+            <div class="container post-container" th:each="specificPost : ${posts}">
+                <a class="id post-id" th:href="@{|/post/${specificPost.id}|}">
+                    <h2 class="post-title" th:text="|${specificPost.title}|">Post Title</h2>
+                </a>
+                <p class="post-body" th:text="${specificPost.body}"></p>
+                <p class=post__author-section>Authors:</p>
+                <ul class="post-authorlist" th:each="author : ${specificPost.authors}">
+                    <li class="post-author">
+                        <a class="post-author-anchor" th:href="@{|/author/${author.id}|}"
+                            th:text="${author.name}">Authors</a>
+                    </li>
+                </ul>
+                <p class="post__tag-section">Tags:</p>
+                <ul class="post-taglist" th:each="tag : ${specificPost.tags}">
+                    <li class="post-author">
+                        <a class="post-tag-anchor" th:href="@{|/tag/${tag.id}|}" th:text="|${tag.name}|">Tags</a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>
