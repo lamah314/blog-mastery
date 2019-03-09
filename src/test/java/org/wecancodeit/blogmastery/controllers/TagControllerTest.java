@@ -20,10 +20,10 @@ import org.wecancodeit.blogmastery.repositories.GenreRepository;
 import org.wecancodeit.blogmastery.repositories.PostRepository;
 import org.wecancodeit.blogmastery.repositories.TagRepository;
 
-public class MainControllerTest {
+public class TagControllerTest {
 
 	@InjectMocks
-	private MainController underTest;
+	private TagController underTest;
 	
 	@Mock
 	private PostRepository postRepo;
@@ -69,7 +69,7 @@ public class MainControllerTest {
 		when(tagRepo.findById(tagId)).thenReturn(Optional.of(tag));
 		
 
-		underTest.getHome(model, postId, authorId, genreId, tagId);
+		underTest.getTag(model, postId, authorId, genreId, tagId);
 
 		verify(model).addAttribute("post", post);
 		verify(model).addAttribute("author", author);

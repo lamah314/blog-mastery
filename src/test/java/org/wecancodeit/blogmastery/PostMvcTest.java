@@ -16,6 +16,8 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.wecancodeit.blogmastery.controllers.PostController;
+import org.wecancodeit.blogmastery.repositories.PostRepository;
 import org.wecancodeit.reviewsite.controllers.PortfolioController;
 import org.wecancodeit.reviewsite.models.Portfolio;
 import org.wecancodeit.reviewsite.repositories.PortfoliosRepository;
@@ -24,14 +26,14 @@ import org.wecancodeit.reviewsite.repositories.ReviewsRepository;
 
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(PortfolioController.class)
-public class PostMvcTest {
+@WebMvcTest(PostController.class)
+public class PostMvcTest<Portfolio> {
 	 
 	    @Resource
 	    private MockMvc mvc;
 	 
 	    @MockBean
-	    private PortfoliosRepository portfolioRepo;
+	    private PostRepository portfolioRepo;
 	 
 	    @MockBean
 	    private ReviewsRepository reviewRepo;
@@ -49,17 +51,17 @@ public class PostMvcTest {
 	        mvc.perform(get("/portfolios/1")).andExpect(view().name(is("portfolios/individualPortfolio")));
 	    }
 	     
-//	    @Test
-//	    public void shouldBeOkForIndividualPortfolio() throws Exception {
-//	    	Long portfolioId = 1L;
-//	    	when(portfolioRepo.findById(portfolioId)).thenReturn(Optional.of(portfolio));
-//	    	mvc.perform(get("/portfolios/1")).andExpect(status().isOk());
-//	    }
-//	     
-//	    @Test
-//	    public void shouldPutSinglePortfolioIntoModel() throws Exception {
-//	    	Long portfolioId = 1L;
-//	        when(portfolioRepo.findById(portfolioId)).thenReturn(Optional.of(portfolio));
-//	        mvc.perform(get("/portfolios/1")).andExpect(model().attribute("Portfolio", is(portfolio)));
-//	    }
+	    @Test
+	    public void shouldBeOkForIndividualPortfolio() throws Exception {
+	    	Long portfolioId = 1L;
+	    	when(portfolioRepo.findById(portfolioId)).thenReturn(Optional.of(portfolio));
+	    	mvc.perform(get("/portfolios/1")).andExpect(status().isOk());
+    }
+     
+	    @Test
+	    public void shouldPutSinglePortfolioIntoModel() throws Exception {
+   	Long portfolioId = 1L;
+        when(portfolioRepo.findById(portfolioId)).thenReturn(Optional.of(portfolio));
+        mvc.perform(get("/portfolios/1")).andExpect(model().attribute("Portfolio", is(portfolio)));
+    }
 }
