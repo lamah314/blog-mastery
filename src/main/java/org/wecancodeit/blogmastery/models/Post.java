@@ -1,14 +1,16 @@
 package org.wecancodeit.blogmastery.models;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.Collection;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 @Entity
 public class Post {
@@ -21,7 +23,10 @@ public class Post {
 	
 	private String body;
 	
-	@ManyToMany(mappedBy= "posts")
+	@ManyToMany
+	@JoinTable(name = "post_author",
+	joinColumns = { @JoinColumn(name = "post") },
+	inverseJoinColumns = { @JoinColumn(name = "author") })
 	private Collection<Author> authors;
 	
 	private LocalDateTime date;
@@ -29,7 +34,10 @@ public class Post {
 	@ManyToOne
 	private Genre genre;
 	
-	@ManyToMany(mappedBy= "posts")
+	@ManyToMany
+//	@JoinTable(name = "post_tag",
+//	joinColumns = { @JoinColumn(name = "post") },
+//	inverseJoinColumns = { @JoinColumn(name = "tag") })
 	private Collection<Tag> tags;
 
 	public Long getId() {
@@ -62,14 +70,14 @@ public class Post {
 
 	public Post() {}
 	
-	public Post(String title, String body, Collection<Author> authors, Genre genre,
-			Collection<Tag> tags) {
+	public Post(String title, String body, Author author, Genre genre,
+			Tag tag) {
 		this.title = title;
 		this.body = body;
-		this.authors = authors;
+		this.authors = Arrays.asList(author);
 		this.date = LocalDateTime.now();
 		this.genre = genre;
-		this.tags = tags;
+		this.tags = Arrays.asList(tag);
 	}
 
 	@Override

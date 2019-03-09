@@ -5,13 +5,16 @@ import static org.junit.Assert.assertThat;
 
 import javax.annotation.Resource;
 
+import org.assertj.core.util.Arrays;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.wecancodeit.blogmastery.models.Author;
+import org.wecancodeit.blogmastery.models.Genre;
 import org.wecancodeit.blogmastery.models.Post;
+import org.wecancodeit.blogmastery.models.Tag;
 import org.wecancodeit.blogmastery.repositories.AuthorRepository;
 import org.wecancodeit.blogmastery.repositories.GenreRepository;
 import org.wecancodeit.blogmastery.repositories.PostRepository;
@@ -35,9 +38,11 @@ public class PostTest {
 
 	@Test
 	public void shouldSaveAndLoadPost() {
-		Author author = new Author("Anthony");
+		Author author = authorRepo.save(new Author("Anthony"));
+		Tag tag = tagRepo.save(new Tag("Tag"));
+		Genre genre = genreRepo.save(new Genre("Genre"));
 		Post post = postRepo
-				.save(new Post("Anthony Lam", "Hello World", ));
+				.save(new Post("Anthony Lam", "Hello World", author, genre, tag));
 
 		entityManager.persist(post);
 		entityManager.flush();
