@@ -3,9 +3,9 @@ package org.wecancodeit.blogmastery;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 import java.util.Optional;
 
@@ -18,8 +18,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.wecancodeit.blogmastery.controllers.PostController;
-import org.wecancodeit.blogmastery.models.Post;
+import org.wecancodeit.blogmastery.controllers.TagController;
 import org.wecancodeit.blogmastery.models.Tag;
 import org.wecancodeit.blogmastery.repositories.AuthorRepository;
 import org.wecancodeit.blogmastery.repositories.GenreRepository;
@@ -28,7 +27,7 @@ import org.wecancodeit.blogmastery.repositories.TagRepository;
 
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(PostController.class)
+@WebMvcTest(TagController.class)
 public class TagMvcTest<Portfolio> {
 	 
 	    @Resource
@@ -50,21 +49,21 @@ public class TagMvcTest<Portfolio> {
 	    private Tag tag;
 	    
 	    @Test
-	    public void shouldRouteToIndiviualPostView() throws Exception {
+	    public void shouldRouteToIndiviualTagView() throws Exception {
 	        Long tagId = 1L;
 	        when(tagRepo.findById(tagId)).thenReturn(Optional.of(tag));
 	        mvc.perform(get("/tag/1")).andExpect(view().name(is("/tag/individualTag")));
 	    }
 	     
 	    @Test
-	    public void shouldBeOkForIndividualPost() throws Exception {
+	    public void shouldBeOkForIndividualTag() throws Exception {
 	    	Long tagId = 1L;
 	        when(tagRepo.findById(tagId)).thenReturn(Optional.of(tag));
 	    	mvc.perform(get("/tag/1")).andExpect(status().isOk());
     }
      
 	    @Test
-	    public void shouldPutSinglePostIntoModel() throws Exception {
+	    public void shouldPutSingleTagIntoModel() throws Exception {
 	    	Long tagId = 1L;
 	        when(tagRepo.findById(tagId)).thenReturn(Optional.of(tag));
 	        mvc.perform(get("/tag/1")).andExpect(model().attribute("post", is(tag)));

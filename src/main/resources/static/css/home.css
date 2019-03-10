@@ -55,3 +55,11 @@ margin-top: 1rem;
   top:0;
   right: 0;
 }
+
+.field-set .form{
+  border-style: none;
+}
+
+fieldset {
+  border:0 none;
+}

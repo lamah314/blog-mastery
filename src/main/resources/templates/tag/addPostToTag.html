@@ -10,37 +10,33 @@
 </head>
 
 <body>
-    <figure>
-        <img class="hero-image" src="/../media/blog.jpg" alt="Blog">
-    </figure>
-    <nav class="main-nav">
-        <ul class="nav-links">
-            <li><a class="links" href="/">Home</a></li>
-            <li><a class="links" href="/post/">Posts</a></li>
-            <li><a class="links" href="/author/">Authors</a></li>
-            <li><a class="links" href="/genre/">Genres</a></li>
-            <li><a class="links" href="/tag/">Tags</a></li>
-        </ul>
-    </nav>
+    <header>
+        <nav class="main-nav">
+            <ul class="nav-links">
+                <li><a class="links" href="/">Home</a></li>
+                <li><a class="links" href="/post/">Posts</a></li>
+                <li><a class="links" href="/author/">Authors</a></li>
+                <li><a class="links" href="/genre/">Genres</a></li>
+                <li><a class="links" href="/tag/">Tags</a></li>
+            </ul>
+        </nav>
+        <section class="hero-image-2nd">
+        </section>
+    </header>
 
     <main>
         <form class="form" th:action="|/tag/${tag.id}/addPostToTag|" method="post">
-            <table>
-                <tr>
-                    <td> Post: <select name="postId">
-                            <div th:each="post : ${posts}">
-                                <div th:unless="${tag.checkPostsInTag(post)}">
-                                    <option th:value="${post.id}" th:text="|Name: ${post.title}|">
-                                    </option>
-                                </div>
-                            </div>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td><button type="submit">Submit</button></td>
-                </tr>
-            </table>
+            <fieldset class="field-set">
+                Post: <select name="postId">
+                    <div th:each="post : ${posts}">
+                        <div th:unless="${tag.checkPostsInTag(post)}">
+                            <option th:value="${post.id}" th:text="|Name: ${post.title}|">
+                            </option>
+                        </div>
+                    </div>
+                </select>
+            </fieldset>
+            <button type="submit">Submit</button>
         </form>
     </main>
 </body>

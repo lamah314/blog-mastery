@@ -50,21 +50,21 @@ public class AuthorMvcTest<Portfolio> {
 	    private Author author;
 	    
 	    @Test
-	    public void shouldRouteToIndiviualPostView() throws Exception {
+	    public void shouldRouteToIndiviualAuthorView() throws Exception {
 	        Long authorId = 1L;
 	        when(authorRepo.findById(authorId)).thenReturn(Optional.of(author));
 	        mvc.perform(get("/author/1")).andExpect(view().name(is("/author/individualAuthor")));
 	    }
 	     
 	    @Test
-	    public void shouldBeOkForIndividualPost() throws Exception {
+	    public void shouldBeOkForIndividualAuthor() throws Exception {
 	    	Long authorId = 1L;
 	        when(authorRepo.findById(authorId)).thenReturn(Optional.of(author));
 	    	mvc.perform(get("/author/1")).andExpect(status().isOk());
     }
      
 	    @Test
-	    public void shouldPutSinglePostIntoModel() throws Exception {
+	    public void shouldPutSingleAuthorIntoModel() throws Exception {
 	    	Long authorId = 1L;
 	        when(authorRepo.findById(authorId)).thenReturn(Optional.of(author));
 	        mvc.perform(get("/author/1")).andExpect(model().attribute("author", is(author)));
