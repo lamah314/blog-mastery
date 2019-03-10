@@ -10,30 +10,26 @@
 </head>
 
 <body>
-    <figure>
-        <img class="hero-image" src="../media/blog.jpg" alt="Blog">
-    </figure>
-    <nav class="main-nav">
-        <ul class="nav-links">
-            <li><a class="links" href="/">Home</a></li>
-            <li><a class="links" href="/post/">Posts</a></li>
-            <li><a class="links" href="/author/">Authors</a></li>
-            <li><a class="links" href="/genre/">Genres</a></li>
-            <li><a class="links" href="/tag/">Tags</a></li>
-        </ul>
-    </nav>
+    <header>
+        <nav class="main-nav">
+            <ul class="nav-links">
+                <li><a class="links" href="/">Home</a></li>
+                <li><a class="links" href="/post/">Posts</a></li>
+                <li><a class="links" href="/author/">Authors</a></li>
+                <li><a class="links" href="/genre/">Genres</a></li>
+                <li><a class="links" href="/tag/">Tags</a></li>
+            </ul>
+        </nav>
+        <section class="hero-image-2nd">
+        </section>
+    </header>
 
     <main>
-           <form class="form" action="/genre/addGenre" method="post">
-            <table>
-                <tr>
-                    <td>Genre Name:</td>
-                    <td><input type="text" name="genreName" /></td>
-                </tr>
-                <tr>
-                    <td><button type="submit">Submit</button></td>
-                </tr>
-            </table>
+        <form class="form" action="/genre/addGenre" method="post">
+            <fieldset class="field-set">
+                Genre Name: <input type="text" name="genreName" />
+            </fieldset>
+            <button type="submit">Submit</button></td>
         </form>
     </main>
 </body>

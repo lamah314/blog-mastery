@@ -10,57 +10,39 @@
 </head>
 
 <body>
-    <figure>
-        <img class="hero-image" src="../media/blog.jpg" alt="Blog">
-    </figure>
-    <nav class="main-nav">
-        <ul class="nav-links">
-            <li><a class="links" href="/">Home</a></li>
-            <li><a class="links" href="/post/">Posts</a></li>
-            <li><a class="links" href="/author/">Authors</a></li>
-            <li><a class="links" href="/genre/">Genres</a></li>
-            <li><a class="links" href="/tag/">Tags</a></li>
-        </ul>
-    </nav>
+    <header>
+        <nav class="main-nav">
+            <ul class="nav-links">
+                <li><a class="links" href="/">Home</a></li>
+                <li><a class="links" href="/post/">Posts</a></li>
+                <li><a class="links" href="/author/">Authors</a></li>
+                <li><a class="links" href="/genre/">Genres</a></li>
+                <li><a class="links" href="/tag/">Tags</a></li>
+            </ul>
+        </nav>
+        <section class="hero-image-2nd">
+        </section>
+    </header>
 
     <main>
         <form class="form" action="/post/addPost" method="post">
-            <table>
-                <tr>
-                    <td>Title:</td>
-                    <td><input type="text" name="postTitle" /></td>
-                </tr>
-                <tr>
-                    <td> Body:</td>
-                    <td><input type="text" name="postBody" /></td>
-                </tr>
-                <tr>
-                    <td> Author: <select name="authorId">
-                            <option th:each="author : ${authors}" th:value="${author.id}"
-                                th:text="|Name: ${author.name}|">
-                            </option>
-                        </select>
-                    </td>
-
-                </tr>
-                <tr>
-                    <td> Genre: <select name="genreId">
-                            <option th:each="genre : ${genres}" th:value="${genre.id}" th:text="|Name: ${genre.name}|">
-                            </option>
-                        </select>
-                    </td>
-
-                </tr>
-                <tr>
-                    <td> Tag: <select name="tagId">
-                            <option th:each="tag : ${tags}" th:value="${tag.id}" th:text="|Name: ${tag.name}|">
-                            </option>
-                        </select>
-                    </td>
-                </tr>
-
-                <tr><td><button type="submit">Submit</button></td></tr>
-            </table>
+            <fieldset class="field-set">
+                Title: <input type="text" name="postTitle" /> <br />
+                Body: <input type="text" name="postBody" /> <br />
+                Author: <select name="authorId">
+                    <option th:each="author : ${authors}" th:value="${author.id}" th:text="|Name: ${author.name}|">
+                    </option>
+                </select> <br />
+                Genre: <select name="genreId">
+                    <option th:each="genre : ${genres}" th:value="${genre.id}" th:text="|Name: ${genre.name}|">
+                    </option>
+                </select> <br />
+                Tag: <select name="tagId">
+                    <option th:each="tag : ${tags}" th:value="${tag.id}" th:text="|Name: ${tag.name}|">
+                    </option>
+                </select>
+            </fieldset>
+            <button type="submit">Submit</button>
         </form>
     </main>
 </body>

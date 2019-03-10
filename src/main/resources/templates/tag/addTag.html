@@ -10,30 +10,26 @@
 </head>
 
 <body>
-    <figure>
-        <img class="hero-image" src="../media/blog.jpg" alt="Blog">
-    </figure>
-    <nav class="main-nav">
-        <ul class="nav-links">
-            <li><a class="links" href="/">Home</a></li>
-            <li><a class="links" href="/post/">Posts</a></li>
-            <li><a class="links" href="/author/">Authors</a></li>
-            <li><a class="links" href="/genre/">Genres</a></li>
-            <li><a class="links" href="/tag/">Tags</a></li>
-        </ul>
-    </nav>
+    <header>
+        <nav class="main-nav">
+            <ul class="nav-links">
+                <li><a class="links" href="/">Home</a></li>
+                <li><a class="links" href="/post/">Posts</a></li>
+                <li><a class="links" href="/author/">Authors</a></li>
+                <li><a class="links" href="/genre/">Genres</a></li>
+                <li><a class="links" href="/tag/">Tags</a></li>
+            </ul>
+        </nav>
+        <section class="hero-image-2nd">
+        </section>
+    </header>
 
     <main>
-           <form class="form" action="/tag/addTag" method="post">
-            <table>
-                <tr>
-                    <td>Tag Name:</td>
-                    <td><input type="text" name="tagName" /></td>
-                </tr>
-                <tr>
-                    <td><button type="submit">Submit</button></td>
-                </tr>
-            </table>
+        <form class="form" action="/tag/addTag" method="post">
+            <fieldset class="field-set">
+                Tag Name: <input type="text" name="tagName" />
+            </fieldset>
+            <button type="submit">Submit</button>
         </form>
     </main>
 </body>
