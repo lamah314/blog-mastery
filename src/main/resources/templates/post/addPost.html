@@ -24,7 +24,7 @@
     </nav>
 
     <main>
-        <form class="form" action="/tag/addPost" method="post">
+        <form class="form" action="/post/addPost" method="post">
             <table>
                 <tr>
                     <td>Title:</td>
@@ -35,7 +35,7 @@
                     <td><input type="text" name="postBody" /></td>
                 </tr>
                 <tr>
-                    <td> Author: <select name="Author">
+                    <td> Author: <select name="authorId">
                             <option th:each="author : ${authors}" th:value="${author.id}"
                                 th:text="|Name: ${author.name}|">
                             </option>
@@ -44,7 +44,7 @@
 
                 </tr>
                 <tr>
-                    <td> Genre: <select name="Genre">
+                    <td> Genre: <select name="genreId">
                             <option th:each="genre : ${genres}" th:value="${genre.id}" th:text="|Name: ${genre.name}|">
                             </option>
                         </select>
@@ -52,12 +52,14 @@
 
                 </tr>
                 <tr>
-                    <td> Tag: <select name="Tag">
+                    <td> Tag: <select name="tagId">
                             <option th:each="tag : ${tags}" th:value="${tag.id}" th:text="|Name: ${tag.name}|">
                             </option>
                         </select>
                     </td>
                 </tr>
+
+                <tr><td><button type="submit">Submit</button></td></tr>
             </table>
         </form>
     </main>

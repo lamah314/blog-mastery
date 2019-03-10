@@ -24,6 +24,11 @@
     </nav>
 
     <main>
+        <section class="section author-button">
+            <form method="get" action="/author/addAuthor">
+                <button type="submit">Add</button>
+            </form>
+        </section>
         <section class="section author-section">
             <div class="container author-container" th:each="specificAuthor : ${authors}">
                 <a class="id author-id" th:href="@{|/author/${specificAuthor.id}|}">

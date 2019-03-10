@@ -24,6 +24,11 @@
     </nav>
 
     <main>
+        <section class="section genre-button">
+            <form method="get" action="/genre/addGenre">
+                <button type="submit">Add</button>
+            </form>
+        </section>
         <section class="section genre-section">
             <div class="container genre-container" th:each="specificGenre : ${genres}">
                 <a class="id genre-id" th:href="@{|/genre/${specificGenre.id}|}">

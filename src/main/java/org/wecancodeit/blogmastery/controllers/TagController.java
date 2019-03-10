@@ -66,10 +66,10 @@ public class TagController {
 		
 		for(Tag tag : tagRepo.findAll()) {
 			if(tagName.equalsIgnoreCase(tag.getName())){
-				return "redirect:/tag/tagHome";
+				return "redirect:/tag/";
 			}
 		}
 		tagRepo.save(new Tag(tagName));
-		return "redirect:/tag/tagHome";
+		return "redirect:/tag/";
 	}
 }

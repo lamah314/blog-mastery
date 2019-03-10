@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.wecancodeit.blogmastery.models.Tag;
+import org.wecancodeit.blogmastery.models.Post;
 import org.wecancodeit.blogmastery.repositories.AuthorRepository;
 import org.wecancodeit.blogmastery.repositories.GenreRepository;
 import org.wecancodeit.blogmastery.repositories.PostRepository;
@@ -56,7 +56,7 @@ public class PostController {
 	}
 	
 	@PostMapping("/addPost") 
-	public String addTag(Model model, String tagName) {
+	public String addPost(Model model, String postTitle, String postBody, Long authorId, Long genreId, Long tagId) {
 		model.addAttribute("authors", authorRepo.findAll());
 		model.addAttribute("posts", postRepo.findAll());
 		model.addAttribute("genres", genreRepo.findAll());
@@ -65,10 +65,10 @@ public class PostController {
 		
 		for(Post post : postRepo.findAll()) {
 			if(postTitle.equalsIgnoreCase(post.getTitle())){
-				return "redirect:/post/postHome";
+				return "redirect:/post/";
 			}
 		}
-		postRepo.save(new Post(postTitle));
-		return "redirect:/post/postHome";
+		postRepo.save(new Post(postTitle, postBody, authorRepo.findById(authorId).get(), genreRepo.findById(genreId).get(), tagRepo.findById(tagId).get()));
+		return "redirect:/post/";
 	}
 }
