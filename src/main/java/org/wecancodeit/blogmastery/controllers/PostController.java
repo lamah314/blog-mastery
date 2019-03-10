@@ -28,7 +28,7 @@ public class PostController {
 	TagRepository tagRepo;
 	
 	@GetMapping("/") 
-	public String getAuthorHome(Model model) {
+	public String getPostHome(Model model) {
 		model.addAttribute("authors", authorRepo.findAll());
 		model.addAttribute("posts", postRepo.findAll());
 		model.addAttribute("genres", genreRepo.findAll());

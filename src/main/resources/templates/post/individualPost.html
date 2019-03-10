@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Blog</title>
-    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" type="text/css" href="../css/home.css">
 </head>
 
 <body>
@@ -27,7 +27,7 @@
         <section class="section post-section">
             <div class="container post-container">
                 <h2 class="post-title" th:text="|${post.title}|">Post Title</h2>
-                <p class="post-date" th:text="${specificPost.date}"></p>
+                <p class="post-date" th:text="${post.date}"></p>
                 <p class="post-body" th:text="${post.body}"></p>
                 <p class=post__author-section>Authors:</p>
                 <ul class="post-authorlist" th:each="author : ${post.authors}">

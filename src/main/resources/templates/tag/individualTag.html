@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Blog</title>
-    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" type="text/css" href="../css/home.css">
 </head>
 
 <body>
@@ -24,6 +24,11 @@
     </nav>
 
     <main>
+        <section class="section tag-post-button">
+            <form method="get" th:action="|/tag/${tag.id}/addPostToTag|">
+                <button type="submit" th:text="|Add Post to the ${tag.name} tag|">Add Post to this tag</button>
+            </form>
+        </section>
         <section class="section author-section">
             <h2 class="tag-name" th:text="|${tag.name}|">Tag Name</h2>
             <p class="tag__post-section">Posts:</p>

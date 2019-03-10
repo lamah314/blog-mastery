@@ -3,6 +3,8 @@ package org.wecancodeit.blogmastery.controllers;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Optional;
 
 import org.junit.Before;
@@ -29,25 +31,25 @@ public class MainControllerTest {
 	private PostRepository postRepo;
 	
 	@Mock
-	private Post post;
+	private Iterable<Post> posts;
 	
 	@Mock
 	private AuthorRepository authorRepo;
 	
 	@Mock
-	private Author author;
+	private Iterable<Author> authors;
 	
 	@Mock
 	private TagRepository tagRepo;
 	
 	@Mock
-	private Tag tag;
+	private Iterable<Tag> tags;
 	
 	@Mock
 	private GenreRepository genreRepo;
 	
 	@Mock
-	private Genre genre;
+	private Iterable<Genre> genres;
 	
 	@Mock
 	private Model model;
@@ -57,25 +59,22 @@ public class MainControllerTest {
 		MockitoAnnotations.initMocks(this);
 	}
 
-//	@Test
-//	public void shouldAddPostAuthorGenreTagToModel() throws Exception {
-//		Long postId = 1L;
-//		Long authorId = 1L;
-//		Long genreId = 1L;
-//		Long tagId = 1L;
-//		when(postRepo.findById(postId)).thenReturn(Optional.of(post));
-//		when(authorRepo.findById(authorId)).thenReturn(Optional.of(author));
-//		when(genreRepo.findById(genreId)).thenReturn(Optional.of(genre));
-//		when(tagRepo.findById(tagId)).thenReturn(Optional.of(tag));
-//		
-//
-//		underTest.getHome(model, postId, authorId, genreId, tagId);
-//
-//		verify(model).addAttribute("post", post);
-//		verify(model).addAttribute("author", author);
-//		verify(model).addAttribute("genre", genre);
-//		verify(model).addAttribute("tag", tag);
-//	}
+	@Test
+	public void shouldPullPostsAuthorsGenresTagsToModel() throws Exception {
+		
+		when(postRepo.findAll()).thenReturn(posts);
+		when(authorRepo.findAll()).thenReturn(authors);
+		when(genreRepo.findAll()).thenReturn(genres);
+		when(tagRepo.findAll()).thenReturn(tags);
+		
+
+		underTest.getHome(model);
+
+		verify(model).addAttribute("posts", posts);
+		verify(model).addAttribute("authors", authors);
+		verify(model).addAttribute("genres", genres);
+		verify(model).addAttribute("tags", tags);
+	}
 
 
 }

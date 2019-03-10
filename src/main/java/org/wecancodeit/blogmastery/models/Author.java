@@ -44,8 +44,12 @@ public class Author {
 		this.posts = Arrays.asList(posts);
 	}
 	
-	public void addPosttoAuthor(Post post) {
+	public void addPostToAuthor(Post post) {
 		posts.add(post);
+	}
+	
+	public boolean checkPostsInAuthor(Post post) {
+		return posts.contains(post);
 	}
 
 	@Override

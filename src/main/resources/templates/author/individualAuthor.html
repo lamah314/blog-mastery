@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Blog</title>
-    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" type="text/css" href="../css/home.css">
 </head>
 
 <body>
@@ -24,6 +24,11 @@
     </nav>
 
     <main>
+        <section class="section author-post-button">
+            <form method="get" th:action="@{|/author/${author.id}/addPostToAuthor|}">
+                <button type="submit" th:text="|Add Post to ${author.name}|">Add Post to this author</button>
+            </form>
+        </section>
         <section class="section author-section">
             <h2 class="author-name" th:text="|${author.name}|">Author Name</h2>
             <p class="author__post-section">Posts:</p>
