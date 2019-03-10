@@ -25,47 +25,46 @@ import org.wecancodeit.blogmastery.repositories.GenreRepository;
 import org.wecancodeit.blogmastery.repositories.PostRepository;
 import org.wecancodeit.blogmastery.repositories.TagRepository;
 
-
 @RunWith(SpringRunner.class)
 @WebMvcTest(GenreController.class)
 public class GenreMvcTest<Portfolio> {
-	 
-	    @Resource
-	    private MockMvc mvc;
-	 
-	    @MockBean
-	    private PostRepository postRepo;
-	 
-	    @MockBean
-	    private AuthorRepository authorRepo;
-	 
-	    @MockBean
-	    private GenreRepository genreRepo;
-	    
-	    @MockBean
-	    private TagRepository tagRepo;
-	 
-	    @Mock
-	    private Genre genre;
-	    
-	    @Test
-	    public void shouldRouteToIndiviualGenreView() throws Exception {
-	        Long genreId = 1L;
-	        when(genreRepo.findById(genreId)).thenReturn(Optional.of(genre));
-	        mvc.perform(get("/genre/1")).andExpect(view().name(is("/genre/individualGenre")));
-	    }
-	     
-	    @Test
-	    public void shouldBeOkForIndividualGenre() throws Exception {
-	    	Long genreId = 1L;
-	        when(genreRepo.findById(genreId)).thenReturn(Optional.of(genre));
-	    	mvc.perform(get("/genre/1")).andExpect(status().isOk());
-    }
-     
-	    @Test
-	    public void shouldPutSingleGenreIntoModel() throws Exception {
-	    	Long genreId = 1L;
-	        when(genreRepo.findById(genreId)).thenReturn(Optional.of(genre));
-	        mvc.perform(get("/genre/1")).andExpect(model().attribute("genre", is(genre)));
-    }
+
+	@Resource
+	private MockMvc mvc;
+
+	@MockBean
+	private PostRepository postRepo;
+
+	@MockBean
+	private AuthorRepository authorRepo;
+
+	@MockBean
+	private GenreRepository genreRepo;
+
+	@MockBean
+	private TagRepository tagRepo;
+
+	@Mock
+	private Genre genre;
+
+	@Test
+	public void shouldRouteToIndiviualGenreView() throws Exception {
+		Long genreId = 1L;
+		when(genreRepo.findById(genreId)).thenReturn(Optional.of(genre));
+		mvc.perform(get("/genre/1")).andExpect(view().name(is("/genre/individualGenre")));
+	}
+
+	@Test
+	public void shouldBeOkForIndividualGenre() throws Exception {
+		Long genreId = 1L;
+		when(genreRepo.findById(genreId)).thenReturn(Optional.of(genre));
+		mvc.perform(get("/genre/1")).andExpect(status().isOk());
+	}
+
+	@Test
+	public void shouldPutSingleGenreIntoModel() throws Exception {
+		Long genreId = 1L;
+		when(genreRepo.findById(genreId)).thenReturn(Optional.of(genre));
+		mvc.perform(get("/genre/1")).andExpect(model().attribute("genre", is(genre)));
+	}
 }

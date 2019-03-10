@@ -25,48 +25,46 @@ import org.wecancodeit.blogmastery.repositories.GenreRepository;
 import org.wecancodeit.blogmastery.repositories.PostRepository;
 import org.wecancodeit.blogmastery.repositories.TagRepository;
 
-
 @RunWith(SpringRunner.class)
 @WebMvcTest(TagController.class)
 public class TagMvcTest<Portfolio> {
-	 
-	    @Resource
-	    private MockMvc mvc;
-	 
-	    @MockBean
-	    private PostRepository postRepo;
-	 
-	    @MockBean
-	    private AuthorRepository authorRepo;
-	 
-	    @MockBean
-	    private GenreRepository genreRepo;
-	    
-	    @MockBean
-	    private TagRepository tagRepo;
-	 
-	    @Mock
-	    private Tag tag;
-	    
-	    @Test
-	    public void shouldRouteToIndiviualTagView() throws Exception {
-	        Long tagId = 1L;
-	        when(tagRepo.findById(tagId)).thenReturn(Optional.of(tag));
-	        mvc.perform(get("/tag/1")).andExpect(view().name(is("/tag/individualTag")));
-	    }
-	     
-	    @Test
-	    public void shouldBeOkForIndividualTag() throws Exception {
-	    	Long tagId = 1L;
-	        when(tagRepo.findById(tagId)).thenReturn(Optional.of(tag));
-	    	mvc.perform(get("/tag/1")).andExpect(status().isOk());
-    }
-     
-	    @Test
-	    public void shouldPutSingleTagIntoModel() throws Exception {
-	    	Long tagId = 1L;
-	        when(tagRepo.findById(tagId)).thenReturn(Optional.of(tag));
-	        mvc.perform(get("/tag/1")).andExpect(model().attribute("post", is(tag)));
-    }
-}
 
+	@Resource
+	private MockMvc mvc;
+
+	@MockBean
+	private PostRepository postRepo;
+
+	@MockBean
+	private AuthorRepository authorRepo;
+
+	@MockBean
+	private GenreRepository genreRepo;
+
+	@MockBean
+	private TagRepository tagRepo;
+
+	@Mock
+	private Tag tag;
+
+	@Test
+	public void shouldRouteToIndiviualTagView() throws Exception {
+		Long tagId = 1L;
+		when(tagRepo.findById(tagId)).thenReturn(Optional.of(tag));
+		mvc.perform(get("/tag/1")).andExpect(view().name(is("/tag/individualTag")));
+	}
+
+	@Test
+	public void shouldBeOkForIndividualTag() throws Exception {
+		Long tagId = 1L;
+		when(tagRepo.findById(tagId)).thenReturn(Optional.of(tag));
+		mvc.perform(get("/tag/1")).andExpect(status().isOk());
+	}
+
+	@Test
+	public void shouldPutSingleTagIntoModel() throws Exception {
+		Long tagId = 1L;
+		when(tagRepo.findById(tagId)).thenReturn(Optional.of(tag));
+		mvc.perform(get("/tag/1")).andExpect(model().attribute("post", is(tag)));
+	}
+}

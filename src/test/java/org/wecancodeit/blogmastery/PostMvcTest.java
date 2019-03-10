@@ -25,47 +25,46 @@ import org.wecancodeit.blogmastery.repositories.GenreRepository;
 import org.wecancodeit.blogmastery.repositories.PostRepository;
 import org.wecancodeit.blogmastery.repositories.TagRepository;
 
-
 @RunWith(SpringRunner.class)
 @WebMvcTest(PostController.class)
 public class PostMvcTest<Portfolio> {
-	 
-	    @Resource
-	    private MockMvc mvc;
-	 
-	    @MockBean
-	    private PostRepository postRepo;
-	 
-	    @MockBean
-	    private AuthorRepository authorRepo;
-	 
-	    @MockBean
-	    private GenreRepository genreRepo;
-	    
-	    @MockBean
-	    private TagRepository tagRepo;
-	 
-	    @Mock
-	    private Post post;
-	    
-	    @Test
-	    public void shouldRouteToIndiviualPostView() throws Exception {
-	        Long postId = 1L;
-	        when(postRepo.findById(postId)).thenReturn(Optional.of(post));
-	        mvc.perform(get("/post/1")).andExpect(view().name(is("/post/individualPost")));
-	    }
-	     
-	    @Test
-	    public void shouldBeOkForIndividualPost() throws Exception {
-	    	Long postId = 1L;
-	        when(postRepo.findById(postId)).thenReturn(Optional.of(post));
-	    	mvc.perform(get("/post/1")).andExpect(status().isOk());
-    }
-     
-	    @Test
-	    public void shouldPutSinglePostIntoModel() throws Exception {
-	    	Long postId = 1L;
-	        when(postRepo.findById(postId)).thenReturn(Optional.of(post));
-	        mvc.perform(get("/post/1")).andExpect(model().attribute("post", is(post)));
-    }
+
+	@Resource
+	private MockMvc mvc;
+
+	@MockBean
+	private PostRepository postRepo;
+
+	@MockBean
+	private AuthorRepository authorRepo;
+
+	@MockBean
+	private GenreRepository genreRepo;
+
+	@MockBean
+	private TagRepository tagRepo;
+
+	@Mock
+	private Post post;
+
+	@Test
+	public void shouldRouteToIndiviualPostView() throws Exception {
+		Long postId = 1L;
+		when(postRepo.findById(postId)).thenReturn(Optional.of(post));
+		mvc.perform(get("/post/1")).andExpect(view().name(is("/post/individualPost")));
+	}
+
+	@Test
+	public void shouldBeOkForIndividualPost() throws Exception {
+		Long postId = 1L;
+		when(postRepo.findById(postId)).thenReturn(Optional.of(post));
+		mvc.perform(get("/post/1")).andExpect(status().isOk());
+	}
+
+	@Test
+	public void shouldPutSinglePostIntoModel() throws Exception {
+		Long postId = 1L;
+		when(postRepo.findById(postId)).thenReturn(Optional.of(post));
+		mvc.perform(get("/post/1")).andExpect(model().attribute("post", is(post)));
+	}
 }

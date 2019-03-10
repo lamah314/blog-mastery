@@ -26,47 +26,46 @@ import org.wecancodeit.blogmastery.repositories.GenreRepository;
 import org.wecancodeit.blogmastery.repositories.PostRepository;
 import org.wecancodeit.blogmastery.repositories.TagRepository;
 
-
 @RunWith(SpringRunner.class)
 @WebMvcTest(AuthorController.class)
 public class AuthorMvcTest<Portfolio> {
-	 
-	    @Resource
-	    private MockMvc mvc;
-	 
-	    @MockBean
-	    private PostRepository postRepo;
-	 
-	    @MockBean
-	    private AuthorRepository authorRepo;
-	 
-	    @MockBean
-	    private GenreRepository genreRepo;
-	    
-	    @MockBean
-	    private TagRepository tagRepo;
-	 
-	    @Mock
-	    private Author author;
-	    
-	    @Test
-	    public void shouldRouteToIndiviualAuthorView() throws Exception {
-	        Long authorId = 1L;
-	        when(authorRepo.findById(authorId)).thenReturn(Optional.of(author));
-	        mvc.perform(get("/author/1")).andExpect(view().name(is("/author/individualAuthor")));
-	    }
-	     
-	    @Test
-	    public void shouldBeOkForIndividualAuthor() throws Exception {
-	    	Long authorId = 1L;
-	        when(authorRepo.findById(authorId)).thenReturn(Optional.of(author));
-	    	mvc.perform(get("/author/1")).andExpect(status().isOk());
-    }
-     
-	    @Test
-	    public void shouldPutSingleAuthorIntoModel() throws Exception {
-	    	Long authorId = 1L;
-	        when(authorRepo.findById(authorId)).thenReturn(Optional.of(author));
-	        mvc.perform(get("/author/1")).andExpect(model().attribute("author", is(author)));
-    }
+
+	@Resource
+	private MockMvc mvc;
+
+	@MockBean
+	private PostRepository postRepo;
+
+	@MockBean
+	private AuthorRepository authorRepo;
+
+	@MockBean
+	private GenreRepository genreRepo;
+
+	@MockBean
+	private TagRepository tagRepo;
+
+	@Mock
+	private Author author;
+
+	@Test
+	public void shouldRouteToIndiviualAuthorView() throws Exception {
+		Long authorId = 1L;
+		when(authorRepo.findById(authorId)).thenReturn(Optional.of(author));
+		mvc.perform(get("/author/1")).andExpect(view().name(is("/author/individualAuthor")));
+	}
+
+	@Test
+	public void shouldBeOkForIndividualAuthor() throws Exception {
+		Long authorId = 1L;
+		when(authorRepo.findById(authorId)).thenReturn(Optional.of(author));
+		mvc.perform(get("/author/1")).andExpect(status().isOk());
+	}
+
+	@Test
+	public void shouldPutSingleAuthorIntoModel() throws Exception {
+		Long authorId = 1L;
+		when(authorRepo.findById(authorId)).thenReturn(Optional.of(author));
+		mvc.perform(get("/author/1")).andExpect(model().attribute("author", is(author)));
+	}
 }
