@@ -42,6 +42,14 @@ public class Tag {
 		this.name = name;
 		this.posts = posts;
 	}
+	
+	public void addPostToTag(Post post) {
+		posts.add(post);
+	}
+	
+	public boolean checkPostsInTag(Post post) {
+		return posts.contains(post);
+	}
 
 	@Override
 	public String toString() {

@@ -10,25 +10,32 @@
 </head>
 
 <body>
-    <figure>
-        <img class="hero-image" src="../media/blog.jpg" alt="Blog">
-    </figure>
-    <nav class="main-nav">
-        <ul class="nav-links">
-            <li><a class="links" href="/">Home</a></li>
-            <li><a class="links" href="/post/">Posts</a></li>
-            <li><a class="links" href="/author/">Authors</a></li>
-            <li><a class="links" href="/genre/">Genres</a></li>
-            <li><a class="links" href="/tag/">Tags</a></li>
-        </ul>
-    </nav>
+    <header>
+        <nav class="main-nav">
+            <ul class="nav-links">
+                <li><a class="links" href="/">Home</a></li>
+                <li><a class="links" href="/post/">Posts</a></li>
+                <li><a class="links" href="/author/">Authors</a></li>
+                <li><a class="links" href="/genre/">Genres</a></li>
+                <li><a class="links" href="/tag/">Tags</a></li>
+            </ul>
+        </nav>
+        <section class="hero-image-2nd">
+        </section>
+    </header>
 
     <main>
+        <section class="section post-button">
+            <form method="get" action="/post/addPost">
+                <button type="submit">Add Post</button>
+            </form>
+        </section>
         <section class="section post-section">
             <div class="container post-container" th:each="specificPost : ${posts}">
                 <a class="id post-id" th:href="@{|/post/${specificPost.id}|}">
                     <h2 class="post-title" th:text="|${specificPost.title}|">Post Title</h2>
                 </a>
+                <p class="post-date" th:text="${specificPost.date}"></p>
                 <p class="post-body" th:text="${specificPost.body}"></p>
                 <p class=post__author-section>Authors:</p>
                 <ul class="post-authorlist" th:each="author : ${specificPost.authors}">

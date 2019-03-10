@@ -32,10 +32,16 @@ public class PostControllerTest {
 	private Post post;
 	
 	@Mock
+	private Iterable<Post> posts;
+	
+	@Mock
 	private AuthorRepository authorRepo;
 	
 	@Mock
 	private Author author;
+	
+	@Mock
+	private Iterable<Author> authors;
 	
 	@Mock
 	private TagRepository tagRepo;
@@ -44,10 +50,16 @@ public class PostControllerTest {
 	private Tag tag;
 	
 	@Mock
+	private Iterable<Tag> tags;
+	
+	@Mock
 	private GenreRepository genreRepo;
 	
 	@Mock
 	private Genre genre;
+	
+	@Mock
+	private Iterable<Genre> genres;
 	
 	@Mock
 	private Model model;
@@ -58,23 +70,43 @@ public class PostControllerTest {
 	}
 
 	@Test
-	public void shouldAddPostAuthorGenreTagToModel() throws Exception {
-		Long postId = 1L;
-		Long authorId = 1L;
-		Long genreId = 1L;
-		Long tagId = 1L;
-		when(postRepo.findById(postId)).thenReturn(Optional.of(post));
-		when(authorRepo.findById(authorId)).thenReturn(Optional.of(author));
-		when(genreRepo.findById(genreId)).thenReturn(Optional.of(genre));
-		when(tagRepo.findById(tagId)).thenReturn(Optional.of(tag));
+	public void shouldPullPostsAuthorsGenresTagsToModel() throws Exception {
+		when(postRepo.findAll()).thenReturn(posts);
+		when(authorRepo.findAll()).thenReturn(authors);
+		when(genreRepo.findAll()).thenReturn(genres);
+		when(tagRepo.findAll()).thenReturn(tags);
 		
+		underTest.getPostHome(model);
 
-		underTest.getPost(model, postId, authorId, genreId, tagId);
+		verify(model).addAttribute("posts", posts);
+		verify(model).addAttribute("authors", authors);
+		verify(model).addAttribute("genres", genres);
+		verify(model).addAttribute("tags", tags);
+	}
+	
+	@Test
+	public void shouldAddPostToModel() {
+		Long postId = 1L;
+		when(postRepo.findById(postId)).thenReturn(Optional.of(post));
+
+		underTest.getPost(model, postId);
 
 		verify(model).addAttribute("post", post);
-		verify(model).addAttribute("author", author);
-		verify(model).addAttribute("genre", genre);
-		verify(model).addAttribute("tag", tag);
+	}
+	
+	@Test
+	public void shouldPullPostsAuthorsGenresTagsToAddModel() throws Exception {
+		when(postRepo.findAll()).thenReturn(posts);
+		when(authorRepo.findAll()).thenReturn(authors);
+		when(genreRepo.findAll()).thenReturn(genres);
+		when(tagRepo.findAll()).thenReturn(tags);
+		
+		underTest.addPost(model);
+
+		verify(model).addAttribute("posts", posts);
+		verify(model).addAttribute("authors", authors);
+		verify(model).addAttribute("genres", genres);
+		verify(model).addAttribute("tags", tags);
 	}
 
 

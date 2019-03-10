@@ -79,6 +79,14 @@ public class Post {
 		this.genre = genre;
 		this.tags = Arrays.asList(tag);
 	}
+	
+	public void addAuthorToPost(Author author) {
+		authors.add(author);
+	}
+	
+	public void addTagToPost(Tag tag) {
+		tags.add(tag);
+	}
 
 	@Override
 	public String toString() {

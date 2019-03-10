@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Blog</title>
-    <link rel="stylesheet" type="text/css" href="../css/home.css">
+    <link rel="stylesheet" href="../css/home.css">
 </head>
 
 <body>
@@ -24,20 +24,17 @@
     </nav>
 
     <main>
-        <section class="section tag-post-button">
-            <form method="get" th:action="|/tag/${tag.id}/addPostToTag|">
-                <button type="submit" th:text="|Add Post to the ${tag.name} tag|">Add Post to this tag</button>
-            </form>
-        </section>
-        <section class="section author-section">
-            <h2 class="tag-name" th:text="|${tag.name}|">Tag Name</h2>
-            <p class="tag__post-section">Posts:</p>
-            <ul class="tag-postlist" th:each="post : ${tag.posts}">
-                <li class="tag-post">
-                    <a class="tag-post-anchor" th:href="@{|/post/${post.id}|}" th:text="${post.title}">Posts</a>
-                </li>
-            </ul>
-        </section>
+           <form class="form" action="/author/addAuthor" method="post">
+            <table>
+                <tr>
+                    <td>Author Name:</td>
+                    <td><input type="text" name="authorName" /></td>
+                </tr>
+                <tr>
+                    <td><button type="submit">Submit</button></td>
+                </tr>
+            </table>
+        </form>
     </main>
 </body>
 

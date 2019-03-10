@@ -24,6 +24,11 @@
     </nav>
 
     <main>
+        <section class="section tag-button">
+            <form method="get" action="/tag/addTag">
+                <button type="submit">Add Tag</button>
+            </form>
+        </section>
         <section class="section tag-section">
             <div class="container tag-container" th:each="specificTag : ${tags}">
                 <a class="id tag-id" th:href="@{|/tag/${specificTag.id}|}">

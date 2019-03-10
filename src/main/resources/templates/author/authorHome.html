@@ -24,15 +24,20 @@
     </nav>
 
     <main>
-        <section class="section genre-section">
-            <div class="container genre-container" th:each="specificGenre : ${genres}">
-                <a class="id genre-id" th:href="@{|/genre/${specificGenre.id}|}">
-                    <h2 class="genre-name" th:text="|${specificGenre.name}|">Genre Name</h2>
+        <section class="section author-button">
+            <form method="get" action="/author/addAuthor">
+                <button type="submit">Add Author</button>
+            </form>
+        </section>
+        <section class="section author-section">
+            <div class="container author-container" th:each="specificAuthor : ${authors}">
+                <a class="id author-id" th:href="@{|/author/${specificAuthor.id}|}">
+                    <h2 class="author-name" th:text="|${specificAuthor.name}|">Author Name</h2>
                 </a>
-                <p class="genre__post-section">Posts:</p>
-                <ul class="genre-postlist" th:each="post : ${specificGenre.posts}">
-                    <li class="genre-post">
-                        <a class="genre-post-anchor" th:href="@{|/post/${post.id}|}" th:text="${post.title}">Posts</a>
+                <p class="author__post-section">Posts:</p>
+                <ul class="author-postlist" th:each="post : ${specificAuthor.posts}">
+                    <li class="author-post">
+                        <a class="author-post-anchor" th:href="@{|/post/${post.id}|}" th:text="${post.title}">Posts</a>
                     </li>
                 </ul>
             </div>
