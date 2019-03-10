@@ -31,7 +31,7 @@ public class GenreController {
 		model.addAttribute("posts", postRepo.findAll());
 		model.addAttribute("genres", genreRepo.findAll());
 		model.addAttribute("tags", tagRepo.findAll());
-		return "genre/home";
+		return "/genre/genreHome";
 	}
 	
 	@GetMapping("/{genreId}") 
@@ -41,6 +41,6 @@ public class GenreController {
 		model.addAttribute("genres", genreRepo.findAll());
 		model.addAttribute("tags", tagRepo.findAll());
 		model.addAttribute("genre", genreRepo.findById(genreId).get());
-		return "genre/individualGenre";
+		return "/genre/individualGenre";
 	}
 }

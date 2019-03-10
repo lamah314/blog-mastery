@@ -31,7 +31,7 @@ public class AuthorController {
 		model.addAttribute("posts", postRepo.findAll());
 		model.addAttribute("genres", genreRepo.findAll());
 		model.addAttribute("tags", tagRepo.findAll());
-		return "author/home";
+		return "/author/authorHome";
 	}
 		
 	@GetMapping("/{authorId}") 
@@ -41,6 +41,6 @@ public class AuthorController {
 		model.addAttribute("genres", genreRepo.findAll());
 		model.addAttribute("tags", tagRepo.findAll());
 		model.addAttribute("author", authorRepo.findById(authorId).get());
-		return "author/individualAuthor";
+		return "/author/individualAuthor";
 	}
 }

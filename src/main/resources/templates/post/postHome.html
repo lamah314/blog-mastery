@@ -24,11 +24,17 @@
     </nav>
 
     <main>
+        <section class="section post-button">
+            <form method="get" action="/post/addPost">
+                <button type="submit">Add</button>
+            </form>
+        </section>
         <section class="section post-section">
             <div class="container post-container" th:each="specificPost : ${posts}">
                 <a class="id post-id" th:href="@{|/post/${specificPost.id}|}">
                     <h2 class="post-title" th:text="|${specificPost.title}|">Post Title</h2>
                 </a>
+                <p class="post-date" th:text="${specificPost.date}"></p>
                 <p class="post-body" th:text="${specificPost.body}"></p>
                 <p class=post__author-section>Authors:</p>
                 <ul class="post-authorlist" th:each="author : ${specificPost.authors}">

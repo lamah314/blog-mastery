@@ -24,19 +24,17 @@
     </nav>
 
     <main>
-        <section class="section tag-section">
-            <div class="container tag-container" th:each="specificTag : ${tags}">
-                <a class="id tag-id" th:href="@{|/tag/${specificTag.id}|}">
-                    <h2 class="tag-name" th:text="|${specificTag.name}|">Genre Name</h2>
-                </a>
-                <p class="tag__post-section">Posts:</p>
-                <ul class="tag-postlist" th:each="post : ${specificTag.posts}">
-                    <li class="tag-post">
-                        <a class="tag-post-anchor" th:href="@{|/post/${post.id}|}" th:text="${post.title}">Posts</a>
-                    </li>
-                </ul>
-            </div>
-        </section>
+           <form class="form" action="/tag/addTag" method="post">
+            <table>
+                <tr>
+                    <td>Tag Name:</td>
+                    <td><input type="text" name="tagName" /></td>
+                </tr>
+                <tr>
+                    <td><button type="submit">Submit</button></td>
+                </tr>
+            </table>
+        </form>
     </main>
 </body>
 

@@ -12,8 +12,6 @@ import org.wecancodeit.blogmastery.repositories.AuthorRepository;
 import org.wecancodeit.blogmastery.repositories.GenreRepository;
 import org.wecancodeit.blogmastery.repositories.PostRepository;
 import org.wecancodeit.blogmastery.repositories.TagRepository;
-import org.wecancodeit.reviewsite.models.Review;
-import org.wecancodeit.reviewsite.models.ReviewTag;
 
 @Service
 public class Populator implements CommandLineRunner {
